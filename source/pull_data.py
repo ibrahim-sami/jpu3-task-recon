@@ -84,8 +84,8 @@ def execute(event, context):
 if __name__ == '__main__':
     test = {
         "attributes":dict(
-            _date='2021-5-10',
-            step='2'
+            _date='2021-11-13',
+            step='1'
             )
     }
     execute(test, None)

@@ -26,16 +26,16 @@ def execute(event, context):
         topic_path = publisher.topic_path(project_id, topic_id)
         logger.debug(f'Pushing date ranges to Pub/Sub topic {topic_path}')
 
-        logger.debug('Deleting step 1 and step 2 tables for WRITE_APPEND disposition')
-        client = bigquery.Client(project=project_id)
+        # logger.debug('Deleting step 1 and step 2 tables for WRITE_APPEND disposition')
+        # client = bigquery.Client(project=project_id)
 
-        table_id = f'{project_id}.{dataset_id}.step_1_submission_counts'
-        client.delete_table(table_id, not_found_ok=True)  
-        logger.debug("Deleted table '{}'.".format(table_id))
+        # table_id = f'{project_id}.{dataset_id}.step_1_submission_counts'
+        # client.delete_table(table_id, not_found_ok=True)  
+        # logger.debug("Deleted table '{}'.".format(table_id))
 
-        table_id = f'{project_id}.{dataset_id}.step_2_submission_counts'
-        client.delete_table(table_id, not_found_ok=True)  
-        logger.debug("Deleted table '{}'.".format(table_id))
+        # table_id = f'{project_id}.{dataset_id}.step_2_submission_counts'
+        # client.delete_table(table_id, not_found_ok=True)  
+        # logger.debug("Deleted table '{}'.".format(table_id))
         
         all_dates = []
         logger.debug('Generating dates for step 1')

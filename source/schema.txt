@@ -1,0 +1,7 @@
+project_id:STRING,
+submission_date:DATE,
+task_id:STRING,
+shape_type:STRING,
+last_submission_count:INTEGER,
+last_submission_shape_count:INTEGER,
+ingestion_timestamp:STRING
