@@ -23,7 +23,6 @@ bigquery.enums.SqlTypeNames
 def execute(event, context):
     start = time.time()
     logger = setup_logging(name=Path(__file__).stem)
-    logger.debug('Executing . . .')
 
     if event['attributes']:
         try:
@@ -42,7 +41,7 @@ def execute(event, context):
             else:
                 raise Exception("Error invalid step provided. Expected '1' or '2'")
             query_filepath = os.path.join(query_dir, query_filename)
-            logger.debug(f'Pulling JPU3 tasks for query {os.path.basename(query_filepath)}')
+            
             results = execute_postgres_query(
                 credentials_filepath=credentials_filepath,
                 query_filepath=query_filepath,
@@ -50,15 +49,13 @@ def execute(event, context):
             )
             df = pd.DataFrame(data=results, columns=list(COLUMNS.keys()))
             df['project_id'] = df['project_id'].astype(str)
-            logger.debug(f'DF DTYPES: {df.dtypes}')
+            
             logger.debug(f'{len(df.index)} records pulled')
 
             project = 'hub-data-295911'
             dataset = 'jpu3_task_recon'
 
             table = query_filename.split('.')[0]
-            logger.debug(f'Pushing data to big query at {project}.{dataset}.{table}')
-            logger.debug('Building schema. . .')
             schema = []
             for col_name, col_type in COLUMNS.items():
                 schema.append(bigquery.SchemaField(name=col_name, field_type=col_type))
@@ -73,7 +70,7 @@ def execute(event, context):
                 schema=schema)
             logger.debug(errors)
             end = time.time()
-            logger.debug(f'Function execution took {(end-start)/60} mins')
+            # logger.debug(f'Function execution took {(end-start)/60} mins')
 
         except KeyError as e:
             raise Exception("KeyError. Invalid attributes supplied.")
