@@ -1,0 +1,14 @@
+different looks for different steps - cannot be merged on looker as one output
+triggers go out depending on the project
+step A data and step B data
+	- pull step A
+	- pull step B
+	- delete looker emails
+QA score in step B belongs to step A
+if you import step A before step B the data becomes skewed
+	 - 
+there is a pipeline
+push step A data to review and fix pipeline
+at least daily frequency - or adjusted for specific project
+add to view query for data to be seen on self-service BI
+
